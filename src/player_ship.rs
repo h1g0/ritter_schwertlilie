@@ -12,15 +12,18 @@ struct PlayerShip {
     x: f64,
     /// 自機のY座標
     y: f64,
+    /// 自機の残機
+    life: u32,
 }
 impl PlayerShip {
-    pub fn new(field_size: Size, image_size: Size, hit_size: Size, x: f64, y: f64) -> PlayerShip {
+    pub fn new(field_size: Size, image_size: Size, hit_size: Size, x: f64, y: f64,life: u32) -> PlayerShip {
         let mut result: PlayerShip = PlayerShip {
             field_size,
             image_size,
             hit_size,
             x: 0.0,
             y: 0.0,
+            life,
         };
         result.set_pos(x, y);
         return result;
