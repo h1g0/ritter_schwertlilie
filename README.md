@@ -1,3 +1,3 @@
-# Ritter_Schwertlilie
+# ritter_schwertlilie
 
-Vertical shooter game written in Rust by using Piston.
+**Work In Progress:** Vertical shooter game written in Rust by using Piston.
