@@ -6,6 +6,10 @@ struct InputState {
     down: bool,
     left: bool,
     right: bool,
+    z:bool,
+    x:bool,
+    c:bool,
+    shift:bool,
 }
 impl InputState {
     fn new() -> InputState {
@@ -14,6 +18,10 @@ impl InputState {
             down: false,
             left: false,
             right: false,
+            z:false,
+            x:false,
+            c:false,
+            shift:false,
         };
     }
 
@@ -42,6 +50,34 @@ impl InputState {
             }
             Button::Keyboard(Key::Right) => {
                 self.right = if key.state == ButtonState::Press {
+                    true
+                } else {
+                    false
+                };
+            }
+            Button::Keyboard(Key::Z) => {
+                self.z = if key.state == ButtonState::Press {
+                    true
+                } else {
+                    false
+                };
+            }
+            Button::Keyboard(Key::X) => {
+                self.x = if key.state == ButtonState::Press {
+                    true
+                } else {
+                    false
+                };
+            }
+            Button::Keyboard(Key::C) => {
+                self.c = if key.state == ButtonState::Press {
+                    true
+                } else {
+                    false
+                };
+            }
+            Button::Keyboard(Key::LShift) => {
+                self.shift = if key.state == ButtonState::Press {
                     true
                 } else {
                     false
