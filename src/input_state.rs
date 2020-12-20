@@ -1,7 +1,7 @@
 extern crate piston_window;
 use piston_window::*;
 
-struct InputState {
+pub struct InputState {
     up: bool,
     down: bool,
     left: bool,
@@ -12,7 +12,7 @@ struct InputState {
     shift:bool,
 }
 impl InputState {
-    fn new() -> InputState {
+    pub fn new() -> InputState {
         return InputState {
             up: false,
             down: false,
@@ -25,7 +25,7 @@ impl InputState {
         };
     }
 
-    fn set(&mut self, key: &ButtonArgs) {
+    pub fn set(&mut self, key: &ButtonArgs) {
         match key.button {
             Button::Keyboard(Key::Up) => {
                 self.up = if key.state == ButtonState::Press {

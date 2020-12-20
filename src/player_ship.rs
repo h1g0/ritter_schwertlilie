@@ -1,7 +1,7 @@
 extern crate piston_window;
 use piston_window::*;
 
-struct PlayerShip {
+pub struct PlayerShip {
     /// 自機の可動範囲
     field_size: Size,
     /// 自機の画像サイズ
