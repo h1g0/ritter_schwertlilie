@@ -2,14 +2,14 @@ extern crate piston_window;
 use piston_window::*;
 
 pub struct InputState {
-    up: bool,
-    down: bool,
-    left: bool,
-    right: bool,
-    z:bool,
-    x:bool,
-    c:bool,
-    shift:bool,
+    pub up: bool,
+    pub down: bool,
+    pub left: bool,
+    pub right: bool,
+    pub z:bool,
+    pub x:bool,
+    pub c:bool,
+    pub shift:bool,
 }
 impl InputState {
     pub fn new() -> InputState {

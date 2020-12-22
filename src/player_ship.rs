@@ -1,6 +1,8 @@
 extern crate piston_window;
 use piston_window::*;
 
+use crate::input_state::*;
+
 pub struct PlayerShip {
     /// 自機の可動範囲
     field_size: Size,
@@ -16,7 +18,16 @@ pub struct PlayerShip {
     life: u32,
 }
 impl PlayerShip {
-    pub fn new(field_size: Size, image_size: Size, hit_size: Size, x: f64, y: f64,life: u32) -> PlayerShip {
+    const SPEED: f64 = 2.0;
+
+    pub fn new(
+        field_size: Size,
+        image_size: Size,
+        hit_size: Size,
+        x: f64,
+        y: f64,
+        life: u32,
+    ) -> PlayerShip {
         let mut result: PlayerShip = PlayerShip {
             field_size,
             image_size,
@@ -38,5 +49,23 @@ impl PlayerShip {
     }
     pub fn move_by(&mut self, vx: f64, vy: f64) -> (f64, f64) {
         self.set_pos(self.x + vx, self.y + vy)
+    }
+    pub fn move_by_input(&mut self, input: &InputState) {
+        let vx = if input.left {
+            -PlayerShip::SPEED
+        } else if input.right {
+            PlayerShip::SPEED
+        } else {
+            0.0
+        };
+        let vy = if input.up {
+            -PlayerShip::SPEED
+        } else if input.down {
+            PlayerShip::SPEED
+        } else {
+            0.0
+        };
+
+        self.move_by(vx, vy);
     }
 }

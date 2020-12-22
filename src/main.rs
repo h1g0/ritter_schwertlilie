@@ -8,7 +8,7 @@ mod player_ship;
 use player_ship::*;
 
 ///ウィンドウタイトル
-const WINDOW_TITLE: &str = "PistonTest";
+const WINDOW_TITLE: &str = "ritter_schwertlilie";
 ///画面サイズ
 const WINDOW_SIZE: Size = Size {
     width: 640.0,
@@ -49,9 +49,12 @@ fn main() {
             Event::Loop(Loop::Render(_)) => {
                 window.draw_2d(&e, |c, g, _| {
                     clear([0.0, 0.0, 0.0, 1.0], g);
+                    
                 });
             }
-            Event::Loop(Loop::Update(_)) => {}
+            Event::Loop(Loop::Update(_)) => {
+                player.move_by_input(&input_state);
+            }
             Event::Input(i, _) => {
                 if let Input::Button(key) = i {
                     input_state.set(&key);
