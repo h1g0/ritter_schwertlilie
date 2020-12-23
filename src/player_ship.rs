@@ -5,17 +5,17 @@ use crate::input_state::*;
 
 pub struct PlayerShip {
     /// 自機の可動範囲
-    field_size: Size,
+    pub field_size: Size,
     /// 自機の画像サイズ
-    image_size: Size,
+    pub image_size: Size,
     /// 自機の当たり判定サイズ
-    hit_size: Size,
+    pub hit_size: Size,
+    /// 自機のX座標
+    pub x: f64,
     /// 自機のY座標
-    x: f64,
-    /// 自機のY座標
-    y: f64,
+    pub y: f64,
     /// 自機の残機
-    life: u32,
+    pub life: u32,
 }
 impl PlayerShip {
     const SPEED: f64 = 2.0;
