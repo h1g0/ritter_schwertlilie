@@ -16,6 +16,19 @@ pub struct Enemy{
     vx: f64,
     /// Y方向の移動量
     vy:f64,
-    /// 自機の残機
+    /// 敵のHP
     life: u32,
+}
+
+impl Enemy{
+    pub fn new()->Enemy{
+        unimplemented!();
+    }
+    pub fn draw(){
+        unimplemented!();
+    }
+    pub fn get_pos(&self)->(f64,f64){
+        return (self.x,self.y);
+    }
+
 }
