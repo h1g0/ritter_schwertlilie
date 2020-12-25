@@ -65,7 +65,9 @@ impl PlayerShip {
         } else {
             0.0
         };
-
         self.move_by(vx, vy);
+    }
+    pub fn draw(&mut self){
+        unimplemented!();
     }
 }
