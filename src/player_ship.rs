@@ -6,8 +6,10 @@ use crate::input_state::*;
 pub struct PlayerShip {
     /// 自機の可動範囲
     pub field_size: Size,
+    /// 自機の画像
+    pub texture: G2dTexture,
     /// 自機の画像サイズ
-    pub image_size: Size,
+    pub texture_size: Size,
     /// 自機の当たり判定サイズ
     pub hit_size: Size,
     /// 自機のX座標
@@ -22,7 +24,8 @@ impl PlayerShip {
 
     pub fn new(
         field_size: Size,
-        image_size: Size,
+        texture: G2dTexture,
+        texture_size: Size,
         hit_size: Size,
         x: f64,
         y: f64,
@@ -30,7 +33,8 @@ impl PlayerShip {
     ) -> PlayerShip {
         let mut result: PlayerShip = PlayerShip {
             field_size,
-            image_size,
+            texture,
+            texture_size,
             hit_size,
             x: 0.0,
             y: 0.0,
@@ -67,7 +71,16 @@ impl PlayerShip {
         };
         self.move_by(vx, vy);
     }
-    pub fn draw(&mut self){
-        unimplemented!();
+    pub fn draw(&self, c: Context, g: &mut G2d) {
+        //描画位置とサイズをセット
+        //指定した描画位置は画像の左上になるので、中央に配置する
+        let transform = c
+            .transform
+            .trans(
+                self.x - self.texture_size.width / 2.0,
+                self.y - self.texture_size.height / 2.0,
+            );
+        //描画
+        image(&self.texture, transform, g);
     }
 }
