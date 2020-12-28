@@ -4,10 +4,10 @@ use piston_window::*;
 use crate::input_state::*;
 
 pub struct Enemy{
-    /// 画像サイズ
-    pub image_size: Size,
     /// 自機の画像
     pub texture: G2dTexture,
+    /// 画像サイズ
+    pub texture_size: Size,
     /// 当たり判定サイズ
     pub hit_size: Size,
     /// X座標
@@ -24,14 +24,24 @@ pub struct Enemy{
 
 impl Enemy{
     pub fn new(
-        field_size: Size,
         texture: G2dTexture,
         texture_size: Size,
         hit_size: Size,
         x: f64,
         y: f64,
+        vx: f64,
+        vy: f64,
         life: u32,)->Enemy{
-        unimplemented!();
+        return Enemy{
+            texture,
+            texture_size,
+            hit_size,
+            x,
+            y,
+            vx,
+            vy,
+            life,
+        }
     }
     pub fn draw(){
         unimplemented!();

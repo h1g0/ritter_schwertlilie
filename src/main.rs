@@ -32,6 +32,12 @@ fn main() {
             width: WINDOW_SIZE.width,
             height: WINDOW_SIZE.height,
         },
+        Texture::from_path(
+            &mut window.create_texture_context(),
+            "img/player.png",
+            Flip::None,
+            &TextureSettings::new())
+            .unwrap(),
         Size {
             width: 32.0,
             height: 32.0,
