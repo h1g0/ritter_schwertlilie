@@ -5,23 +5,32 @@ use crate::input_state::*;
 
 pub struct Enemy{
     /// 画像サイズ
-    image_size: Size,
+    pub image_size: Size,
+    /// 自機の画像
+    pub texture: G2dTexture,
     /// 当たり判定サイズ
-    hit_size: Size,
+    pub hit_size: Size,
     /// X座標
-    x: f64,
+    pub x: f64,
     /// Y座標
-    y: f64,
+    pub y: f64,
     /// X方向の移動量
-    vx: f64,
+    pub vx: f64,
     /// Y方向の移動量
-    vy:f64,
+    pub vy:f64,
     /// 敵のHP
-    life: u32,
+    pub life: u32,
 }
 
 impl Enemy{
-    pub fn new()->Enemy{
+    pub fn new(
+        field_size: Size,
+        texture: G2dTexture,
+        texture_size: Size,
+        hit_size: Size,
+        x: f64,
+        y: f64,
+        life: u32,)->Enemy{
         unimplemented!();
     }
     pub fn draw(){
