@@ -43,9 +43,11 @@ impl PlayerShip {
         result.set_pos(x, y);
         return result;
     }
+    /*
     pub fn get_pos(&self) -> (f64, f64) {
         (self.x, self.y)
     }
+    */
     pub fn set_pos(&mut self, x: f64, y: f64) -> (f64, f64) {
         self.x = x;
         self.y = y;

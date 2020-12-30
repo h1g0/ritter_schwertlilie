@@ -39,8 +39,8 @@ fn main() {
             &TextureSettings::new())
             .unwrap(),
         Size {
-            width: 32.0,
-            height: 32.0,
+            width: 64.0,
+            height: 64.0,
         },
         Size {
             width: 2.0,
@@ -55,7 +55,7 @@ fn main() {
             Event::Loop(Loop::Render(_)) => {
                 window.draw_2d(&e, |c, g, _| {
                     clear([0.0, 0.0, 0.0, 1.0], g);
-                    
+                    player.draw(c, g);
                 });
             }
             Event::Loop(Loop::Update(_)) => {
