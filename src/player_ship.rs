@@ -57,17 +57,22 @@ impl PlayerShip {
         self.set_pos(self.x + vx, self.y + vy)
     }
     pub fn move_by_input(&mut self, input: &InputState) {
-        let vx = if input.left {
-            -PlayerShip::SPEED
-        } else if input.right {
+        let speed = if input.shift{
+            PlayerShip::SPEED * 2.0
+        }else{
             PlayerShip::SPEED
+        };
+        let vx = if input.left && self.x > self.texture_size.width / 2.0 {
+            -speed
+        } else if input.right && self.x < self.field_size.width - self.texture_size.width / 2.0 {
+            speed
         } else {
             0.0
         };
-        let vy = if input.up {
-            -PlayerShip::SPEED
-        } else if input.down {
-            PlayerShip::SPEED
+        let vy = if input.up && self.y > self.texture_size.height / 2.0 {
+            -speed
+        } else if input.down && self.y < self.field_size.height - self.texture_size.height / 2.0 {
+            speed
         } else {
             0.0
         };
@@ -76,12 +81,10 @@ impl PlayerShip {
     pub fn draw(&self, c: Context, g: &mut G2d) {
         //描画位置とサイズをセット
         //指定した描画位置は画像の左上になるので、中央に配置する
-        let transform = c
-            .transform
-            .trans(
-                self.x - self.texture_size.width / 2.0,
-                self.y - self.texture_size.height / 2.0,
-            );
+        let transform = c.transform.trans(
+            self.x - self.texture_size.width / 2.0,
+            self.y - self.texture_size.height / 2.0,
+        );
         //描画
         image(&self.texture, transform, g);
     }
