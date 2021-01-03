@@ -8,7 +8,7 @@ edition = "2018"
 
 [dependencies]
 rand = "0.7.3"
-encoding_rs = "0.8.26"
 
 [dependencies.rust_dxlib]
 git = "https://github.com/h1g0/rust_dxlib.git"
+branch = "master"
