@@ -90,7 +90,7 @@ dependencies = [
 [[package]]
 name = "rust_dxlib"
 version = "0.1.0"
-source = "git+https://github.com/h1g0/rust_dxlib.git?branch=master#a20c6c6c23b927c8979fc19120d3a7640ee003ce"
+source = "git+https://github.com/h1g0/rust_dxlib.git?branch=master#03dded011825561ea04b7de8995065814c802669"
 dependencies = [
  "encoding_rs",
 ]

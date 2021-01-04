@@ -7,35 +7,46 @@ use input_state::*;
 
 mod player_ship;
 use player_ship::*;
-
 */
-
-
+mod fps_manager;
+use fps_manager::*;
 
 fn main() {
-    ///ウィンドウタイトル
-    let WINDOW_TITLE = CString::new("ritter_schwertlilie ver. 0.1.0 alpha").unwrap();
+    let window_title = CString::new("ritter_schwertlilie ver. 0.1.0 alpha").unwrap();
 
-    ///画面サイズ
-    let WINDOW_SIZE: (i32,i32) = (800,600);
-    let COLOR_BIT: i32 = 32;
-    let REFRESH_RATE: i32 = 60;
+    let window_size: (i32, i32) = (800, 600);
+    let color_bit: i32 = 32;
+    let refresh_rate: i32 = 60;
 
     unsafe {
         //dx_SetMainWindowText(GetSjisStrPtr(WINDOW_TITLE));
         dx_SetUseCharCodeFormat(DX_CHARCODEFORMAT_UTF8);
-        dx_SetMainWindowText(WINDOW_TITLE.as_ptr());
+        dx_SetMainWindowText(window_title.as_ptr());
         dx_ChangeWindowMode(TRUE);
-        dx_SetGraphMode(WINDOW_SIZE.0, WINDOW_SIZE.1, COLOR_BIT, REFRESH_RATE);
+        dx_SetGraphMode(window_size.0, window_size.1, color_bit, refresh_rate);
         dx_DxLib_Init();
         dx_SetDrawScreen(DX_SCREEN_BACK);
 
         let player = dx_LoadGraph("img/player.png");
+        let mut fps = FpsManager::new(true, 60, dx_GetNowCount());
 
         // メインループ( 裏画面を表画面に反映, メッセージ処理, 画面クリア )
         while dx_ScreenFlip() == 0 && dx_ProcessMessage() == 0 && dx_ClearDrawScreen() == 0 {
             dx_DrawGraph(400, 300, player, TRUE);
-            dx_DrawString(0,0,CString::new("ほげほげ").unwrap().as_ptr(),dx_GetColor(255, 0, 0));
+
+            fps.measure(dx_GetNowCount());
+            let fps_color_val: i32 = if fps.get_percent() > 1.0 {
+                255
+            } else {
+                (255.0 * fps.get_percent()) as i32
+            };
+            let fps_color = dx_GetColor(255, fps_color_val, fps_color_val);
+            dx_DrawString(
+                window_size.0 - 32,
+                window_size.1 - 32,
+                CString::new(format!("{}", fps.get())).unwrap().as_ptr(),
+                fps_color,
+            );
         }
         dx_DxLib_End();
     }
