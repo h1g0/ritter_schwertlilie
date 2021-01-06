@@ -17,11 +17,11 @@ impl FpsManager {
             old_time: now_time,
         };
     }
-    /*
-    pub fn fix(&self) {
-        unimplemented!();
+
+    pub fn fix(&self,) {
+        if !self.fix_fps {return};
+
     }
-    */
 
     /// FPSを測定する
     pub fn measure(&mut self, now_time: i32) -> i32 {
