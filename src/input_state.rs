@@ -1,5 +1,5 @@
-extern crate piston_window;
-use piston_window::*;
+extern crate rust_dxlib;
+use rust_dxlib::*;
 
 pub struct InputState {
     pub up: bool,
@@ -24,7 +24,7 @@ impl InputState {
             shift:false,
         };
     }
-
+    /*
     pub fn set(&mut self, key: &ButtonArgs) {
         match key.button {
             Button::Keyboard(Key::Up) => {
@@ -86,4 +86,5 @@ impl InputState {
             _ => {}
         }
     }
+    */
 }

@@ -1,13 +1,13 @@
 extern crate rust_dxlib;
 use rust_dxlib::*;
 use std::ffi::CString;
-/*
+
 mod input_state;
 use input_state::*;
 
 mod player_ship;
 use player_ship::*;
-*/
+
 mod fps_manager;
 use fps_manager::*;
 
@@ -27,12 +27,13 @@ fn main() {
         dx_DxLib_Init();
         dx_SetDrawScreen(DX_SCREEN_BACK);
 
-        let player = dx_LoadGraph("img/player.png");
+        let mut player = PlayerShip::new(window_size,dx_LoadGraph("img/player.png"),(32,32),(2,2),400.0,300.0,3);
         let mut fps = FpsManager::new(true, 60, dx_GetNowCount());
 
         // メインループ( 裏画面を表画面に反映, メッセージ処理, 画面クリア )
         while dx_ScreenFlip() == 0 && dx_ProcessMessage() == 0 && dx_ClearDrawScreen() == 0 {
-            dx_DrawGraph(400, 300, player, TRUE);
+            
+            player.draw();
 
             fps.measure(dx_GetNowCount());
             let fps_color_val: i32 = if fps.get_percent() > 1.0 {
