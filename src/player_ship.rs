@@ -82,6 +82,7 @@ impl PlayerShip {
         //描画位置とサイズをセット
         //指定した描画位置は画像の左上になるので、中央に配置する
         unsafe{
+            dx_SetDrawBlendMode(DX_BLENDMODE_ALPHA,255);
             dx_DrawGraph(self.x as i32, self.y as i32, self.texture, TRUE);
         }
     }

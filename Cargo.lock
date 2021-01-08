@@ -7,15 +7,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "baf1de4339761588bc0619e3cbc0120ee582ebb74b53b4efbf79117bd2da40fd"
 
 [[package]]
-name = "encoding_rs"
-version = "0.8.26"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "801bbab217d7f79c0062f4f7205b5d4427c6d1a7bd7aafdd1475f7c59d62b283"
-dependencies = [
- "cfg-if",
-]
-
-[[package]]
 name = "getrandom"
 version = "0.1.16"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -90,10 +81,7 @@ dependencies = [
 [[package]]
 name = "rust_dxlib"
 version = "0.1.0"
-source = "git+https://github.com/h1g0/rust_dxlib.git?branch=master#03dded011825561ea04b7de8995065814c802669"
-dependencies = [
- "encoding_rs",
-]
+source = "git+https://github.com/h1g0/rust_dxlib.git?branch=master#0bbbd3b3f7c1344899684ca710c541e55c150faa"
 
 [[package]]
 name = "wasi"
