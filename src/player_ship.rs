@@ -3,6 +3,7 @@ use rust_dxlib::*;
 
 use crate::input_state::*;
 
+/// 自機
 pub struct PlayerShip {
     /// 自機の可動範囲
     pub field_size: (i32,i32),

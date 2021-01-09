@@ -19,7 +19,6 @@ fn main() {
     let refresh_rate: i32 = 60;
 
     unsafe {
-        //dx_SetMainWindowText(GetSjisStrPtr(WINDOW_TITLE));
         dx_SetUseCharCodeFormat(DX_CHARCODEFORMAT_UTF8);
         dx_SetMainWindowText(window_title.as_ptr());
         dx_ChangeWindowMode(TRUE);

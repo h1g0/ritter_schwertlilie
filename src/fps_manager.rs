@@ -1,3 +1,4 @@
+/// FPS関係
 pub struct FpsManager {
     fix_fps: bool,
     default_fps: i32,
