@@ -19,9 +19,10 @@ impl FpsManager {
         };
     }
 
-    pub fn fix(&self,) {
-        if !self.fix_fps {return};
-
+    pub fn fix(&self) {
+        if !self.fix_fps {
+            return;
+        };
     }
 
     /// FPSを測定する
@@ -37,12 +38,12 @@ impl FpsManager {
     }
 
     /// 保存されている最新のFPSを返す
-    pub fn get(&self)->i32{
+    pub fn get(&self) -> i32 {
         return self.fps;
     }
 
     /// 最新のFPSのデフォルトFPSに対する割合を返す
-    pub fn get_percent(&mut self) -> f32{
+    pub fn get_percent(&mut self) -> f32 {
         return self.fps as f32 / self.default_fps as f32;
     }
 }

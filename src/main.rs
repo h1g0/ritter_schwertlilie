@@ -26,12 +26,19 @@ fn main() {
         dx_DxLib_Init();
         dx_SetDrawScreen(DX_SCREEN_BACK);
 
-        let mut player = PlayerShip::new(window_size,dx_LoadGraph("img/player.png"),(32,32),(2,2),400.0,300.0,3);
+        let mut player = PlayerShip::new(
+            window_size,
+            dx_LoadGraph("img/player.png"),
+            (32, 32),
+            (2, 2),
+            400.0,
+            300.0,
+            3,
+        );
         let mut fps = FpsManager::new(true, 60, dx_GetNowCount());
 
         // メインループ( 裏画面を表画面に反映, メッセージ処理, 画面クリア )
         while dx_ScreenFlip() == 0 && dx_ProcessMessage() == 0 && dx_ClearDrawScreen() == 0 {
-            
             player.draw();
 
             fps.measure(dx_GetNowCount());

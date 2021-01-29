@@ -6,10 +6,10 @@ pub struct InputState {
     pub down: bool,
     pub left: bool,
     pub right: bool,
-    pub z:bool,
-    pub x:bool,
-    pub c:bool,
-    pub shift:bool,
+    pub z: bool,
+    pub x: bool,
+    pub c: bool,
+    pub shift: bool,
 }
 impl InputState {
     pub fn new() -> InputState {
@@ -18,10 +18,10 @@ impl InputState {
             down: false,
             left: false,
             right: false,
-            z:false,
-            x:false,
-            c:false,
-            shift:false,
+            z: false,
+            x: false,
+            c: false,
+            shift: false,
         };
     }
     /*

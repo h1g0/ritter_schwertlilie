@@ -6,13 +6,13 @@ use crate::input_state::*;
 /// 自機
 pub struct PlayerShip {
     /// 自機の可動範囲
-    pub field_size: (i32,i32),
+    pub field_size: (i32, i32),
     /// 自機の画像
     pub texture: i32,
     /// 自機の画像サイズ
-    pub texture_size: (i32,i32),
+    pub texture_size: (i32, i32),
     /// 自機の当たり判定サイズ
-    pub hit_size: (i32,i32),
+    pub hit_size: (i32, i32),
     /// 自機のX座標
     pub x: f64,
     /// 自機のY座標
@@ -24,10 +24,10 @@ impl PlayerShip {
     const SPEED: f64 = 2.0;
 
     pub fn new(
-        field_size: (i32,i32),
+        field_size: (i32, i32),
         texture: i32,
-        texture_size: (i32,i32),
-        hit_size: (i32,i32),
+        texture_size: (i32, i32),
+        hit_size: (i32, i32),
         x: f64,
         y: f64,
         life: u32,
@@ -58,9 +58,9 @@ impl PlayerShip {
         self.set_pos(self.x + vx, self.y + vy)
     }
     pub fn move_by_input(&mut self, input: &InputState) {
-        let speed = if input.shift{
+        let speed = if input.shift {
             PlayerShip::SPEED * 2.0
-        }else{
+        } else {
             PlayerShip::SPEED
         };
         let vx = if input.left && self.x > (self.texture_size.0 / 2) as f64 {
@@ -82,8 +82,8 @@ impl PlayerShip {
     pub fn draw(&self) {
         //描画位置とサイズをセット
         //指定した描画位置は画像の左上になるので、中央に配置する
-        unsafe{
-            dx_SetDrawBlendMode(DX_BLENDMODE_ALPHA,255);
+        unsafe {
+            dx_SetDrawBlendMode(DX_BLENDMODE_ALPHA, 255);
             dx_DrawGraph(self.x as i32, self.y as i32, self.texture, TRUE);
         }
     }
