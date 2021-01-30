@@ -19,9 +19,9 @@ dependencies = [
 
 [[package]]
 name = "libc"
-version = "0.2.81"
+version = "0.2.84"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1482821306169ec4d07f6aca392a4681f66c75c9918aa49641a2595db64053cb"
+checksum = "1cca32fa0182e8c0989459524dc356b8f2b5c10f1b9eb521b7d182c03cf8c5ff"
 
 [[package]]
 name = "ppv-lite86"
@@ -81,7 +81,7 @@ dependencies = [
 [[package]]
 name = "rust_dxlib"
 version = "0.1.0"
-source = "git+https://github.com/h1g0/rust_dxlib.git?branch=master#0bbbd3b3f7c1344899684ca710c541e55c150faa"
+source = "git+https://github.com/h1g0/rust_dxlib.git?branch=master#3265d81383e45a7067de2dfebbae267ce00092a5"
 
 [[package]]
 name = "wasi"
