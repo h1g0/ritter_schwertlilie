@@ -1,4 +1,3 @@
-use std::ffi::CString;
 use std::os::raw::c_char;
 
 extern crate rust_dxlib;
@@ -15,6 +14,7 @@ pub struct InputState {
     pub x: bool,
     pub c: bool,
     pub shift: bool,
+    pub esc: bool,
 }
 impl InputState {
     pub fn new() -> InputState {
@@ -27,13 +27,14 @@ impl InputState {
             x: false,
             c: false,
             shift: false,
+            esc: false,
         };
     }
 
     pub fn get_key_state() -> KeyStateBuff {
         unsafe {
-            let mut buf: KeyStateBuff;
-            dx_GetHitKeyStateAll(buf);
+            let mut buf: KeyStateBuff = [0;256];
+            dx_GetHitKeyStateAll(buf.as_mut_ptr());
             return buf;
         }
     }
@@ -79,70 +80,11 @@ impl InputState {
         } else {
             true
         };
+        self.esc = if buffer[KEY_INPUT_ESCAPE as usize] == 0 {
+            false
+        } else {
+            true
+        };
 
     }
-
-    /*
-    pub fn set(&mut self, key: &ButtonArgs) {
-        match key.button {
-            Button::Keyboard(Key::Up) => {
-                self.up = if key.state == ButtonState::Press {
-                    true
-                } else {
-                    false
-                };
-            }
-            Button::Keyboard(Key::Down) => {
-                self.down = if key.state == ButtonState::Press {
-                    true
-                } else {
-                    false
-                };
-            }
-            Button::Keyboard(Key::Left) => {
-                self.left = if key.state == ButtonState::Press {
-                    true
-                } else {
-                    false
-                };
-            }
-            Button::Keyboard(Key::Right) => {
-                self.right = if key.state == ButtonState::Press {
-                    true
-                } else {
-                    false
-                };
-            }
-            Button::Keyboard(Key::Z) => {
-                self.z = if key.state == ButtonState::Press {
-                    true
-                } else {
-                    false
-                };
-            }
-            Button::Keyboard(Key::X) => {
-                self.x = if key.state == ButtonState::Press {
-                    true
-                } else {
-                    false
-                };
-            }
-            Button::Keyboard(Key::C) => {
-                self.c = if key.state == ButtonState::Press {
-                    true
-                } else {
-                    false
-                };
-            }
-            Button::Keyboard(Key::LShift) => {
-                self.shift = if key.state == ButtonState::Press {
-                    true
-                } else {
-                    false
-                };
-            }
-            _ => {}
-        }
-    }
-    */
 }

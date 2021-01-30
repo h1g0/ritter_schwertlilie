@@ -36,9 +36,17 @@ fn main() {
             3,
         );
         let mut fps = FpsManager::new(true, 60, dx_GetNowCount());
+        let mut input = InputState::new();
 
         // メインループ( 裏画面を表画面に反映, メッセージ処理, 画面クリア )
-        while dx_ScreenFlip() == 0 && dx_ProcessMessage() == 0 && dx_ClearDrawScreen() == 0 {
+        while dx_ScreenFlip() == 0
+            && dx_ProcessMessage() == 0
+            && dx_ClearDrawScreen() == 0
+            && input.esc == false
+        {
+            input.set(&InputState::get_key_state());
+
+            player.move_by_input(&input);
             player.draw();
 
             fps.measure(dx_GetNowCount());
