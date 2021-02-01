@@ -33,7 +33,7 @@ impl InputState {
 
     pub fn get_key_state() -> KeyStateBuff {
         unsafe {
-            let mut buf: KeyStateBuff = [0;256];
+            let mut buf: KeyStateBuff = [0; 256];
             dx_GetHitKeyStateAll(buf.as_mut_ptr());
             return buf;
         }
@@ -85,6 +85,5 @@ impl InputState {
         } else {
             true
         };
-
     }
 }
