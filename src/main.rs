@@ -28,7 +28,7 @@ fn main() {
 
         let mut player = PlayerShip::new(
             window_size,
-            dx_LoadGraph("img/player.png"),
+            dx_LoadGraph("img/player.bmp"),
             (32, 32),
             (2, 2),
             400.0,
