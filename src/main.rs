@@ -2,6 +2,8 @@ extern crate rust_dxlib;
 use rust_dxlib::*;
 use std::ffi::CString;
 
+mod math;
+
 mod input_state;
 use input_state::*;
 
