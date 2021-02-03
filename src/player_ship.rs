@@ -17,6 +17,8 @@ pub struct PlayerShip {
     pub x: f64,
     /// 自機のY座標
     pub y: f64,
+    /// 自機の角度（度）
+    pub deg: f64,
     /// 自機の残機
     pub life: u32,
 }
@@ -39,6 +41,7 @@ impl PlayerShip {
             hit_size,
             x: 0.0,
             y: 0.0,
+            deg: 270.0,
             life,
         };
         result.set_pos(x, y);
@@ -83,8 +86,8 @@ impl PlayerShip {
         //描画位置とサイズをセット
         //指定した描画位置は画像の左上になるので、中央に配置する
         unsafe {
-            dx_SetDrawBlendMode(DX_BLENDMODE_ALPHA, 255);
-            dx_DrawGraph(self.x as i32, self.y as i32, self.texture, TRUE);
+            dx_SetDrawBlendMode(DX_BLENDMODE_ADD, 255);
+            dx_DrawRotaGraph(self.x as i32, self.y as i32,1.0,self.deg*std::f64::consts::PI/180.0, self.texture, TRUE,FALSE);
         }
     }
 }
