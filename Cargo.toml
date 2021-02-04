@@ -8,6 +8,7 @@ edition = "2018"
 
 [dependencies]
 rand = "0.7.3"
+assert_approx_eq = "1.1.0"
 
 [dependencies.rust_dxlib]
 git = "https://github.com/h1g0/rust_dxlib.git"

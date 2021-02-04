@@ -60,12 +60,63 @@ impl Angle {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use assert_approx_eq::assert_approx_eq;
 
     #[test]
-    fn deg_to_rad_test() {
-        assert_eq!(
-            Angle::new(180.0, Unit::DEG),
-            Angle::new(std::f64::consts::PI, Unit::RAD)
+    fn get_deg_test() {
+        assert_approx_eq!(
+            Angle::new(180.0, Unit::DEG).deg(),
+            180.0
         );
     }
+    #[test]
+    fn get_deg_test2() {
+        assert_approx_eq!(
+            Angle::new(90.0, Unit::DEG).deg(),
+            90.0
+        );
+    }
+    #[test]
+    fn get_deg_test3() {
+        assert_approx_eq!(
+            Angle::new(360.0, Unit::DEG).deg(),
+            0.0
+        );
+    }
+    #[test]
+    fn get_rad_test() {
+        assert_approx_eq!(
+            Angle::new(180.0, Unit::DEG).rad(),
+            std::f64::consts::PI
+        );
+    }
+    #[test]
+    fn get_rad_test2() {
+        assert_approx_eq!(
+            Angle::new(90.0, Unit::DEG).rad(),
+            std::f64::consts::PI / 2.0
+        );
+    }
+    #[test]
+    fn deg_and_rad_test() {
+        assert_approx_eq!(
+            Angle::new(180.0, Unit::DEG).rad(),
+            Angle::new(std::f64::consts::PI, Unit::RAD).rad()
+        );
+    }
+    #[test]
+    fn overflowed_angle_test() {
+        assert_approx_eq!(
+            Angle::new(180.0+360.0, Unit::DEG).rad(),
+            Angle::new(180.0, Unit::DEG).rad()
+        );
+    }
+    #[test]
+    fn negative_angle_test() {
+        assert_approx_eq!(
+            Angle::new(-180.0, Unit::DEG).rad(),
+            Angle::new(180.0, Unit::DEG).rad()
+        );
+    }
+
 }
