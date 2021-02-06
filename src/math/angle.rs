@@ -1,3 +1,5 @@
+use std::ops::{Neg,Add,AddAssign,Sub,SubAssign};
+
 #[derive(Debug, Clone, Copy, Eq, PartialEq)]
 pub enum Unit {
     RAD,
@@ -8,7 +10,47 @@ pub enum Unit {
 pub struct Angle {
     rad: f64,
 }
+impl Neg for Angle{
+    type Output = Self;
 
+    fn neg(self)-> Self{
+        Self{
+            rad: Angle::revise(-self.rad)
+        }
+    }
+}
+impl Add for Angle{
+    type Output = Self;
+
+    fn add(self, other: Self)-> Self{
+        Self{
+            rad: Angle::revise(self.rad + other.rad)
+        }
+    }
+}
+impl AddAssign for Angle{
+    fn add_assign(&mut self, other: Self){
+        *self = Self{
+            rad: Angle::revise(self.rad + other.rad)
+        }
+    }
+}
+impl Sub for Angle{
+    type Output = Self;
+
+    fn sub(self, other: Self)-> Self{
+        Self{
+            rad: Angle::revise(self.rad - other.rad)
+        }
+    }
+}
+impl SubAssign for Angle{
+    fn sub_assign(&mut self, other: Self){
+        *self = Self{
+            rad: Angle::revise(self.rad - other.rad)
+        }
+    }
+}
 impl Angle {
     /// 最小値（この値を含む）: 0
     const MIN_INCLUSIVE: f64 = 0.0;
@@ -46,11 +88,13 @@ impl Angle {
         };
     }
 
-    pub fn rad(&self)->f64{
+    #[inline]
+    pub fn to_rad(&self)->f64{
         return self.rad;
     }
 
-    pub fn deg(&self)->f64{
+    #[inline]
+    pub fn to_deg(&self)->f64{
         return self.rad * Angle::RAD_TO_DEG;
     }
 
@@ -65,57 +109,57 @@ mod tests {
     #[test]
     fn get_deg_test() {
         assert_approx_eq!(
-            Angle::new(180.0, Unit::DEG).deg(),
+            Angle::new(180.0, Unit::DEG).to_deg(),
             180.0
         );
     }
     #[test]
     fn get_deg_test2() {
         assert_approx_eq!(
-            Angle::new(90.0, Unit::DEG).deg(),
+            Angle::new(90.0, Unit::DEG).to_deg(),
             90.0
         );
     }
     #[test]
     fn get_deg_test3() {
         assert_approx_eq!(
-            Angle::new(360.0, Unit::DEG).deg(),
+            Angle::new(360.0, Unit::DEG).to_deg(),
             0.0
         );
     }
     #[test]
     fn get_rad_test() {
         assert_approx_eq!(
-            Angle::new(180.0, Unit::DEG).rad(),
+            Angle::new(180.0, Unit::DEG).to_rad(),
             std::f64::consts::PI
         );
     }
     #[test]
     fn get_rad_test2() {
         assert_approx_eq!(
-            Angle::new(90.0, Unit::DEG).rad(),
+            Angle::new(90.0, Unit::DEG).to_rad(),
             std::f64::consts::PI / 2.0
         );
     }
     #[test]
     fn deg_and_rad_test() {
         assert_approx_eq!(
-            Angle::new(180.0, Unit::DEG).rad(),
-            Angle::new(std::f64::consts::PI, Unit::RAD).rad()
+            Angle::new(180.0, Unit::DEG).to_rad(),
+            Angle::new(std::f64::consts::PI, Unit::RAD).to_rad()
         );
     }
     #[test]
     fn overflowed_angle_test() {
         assert_approx_eq!(
-            Angle::new(180.0+360.0, Unit::DEG).rad(),
-            Angle::new(180.0, Unit::DEG).rad()
+            Angle::new(180.0+360.0, Unit::DEG).to_rad(),
+            Angle::new(180.0, Unit::DEG).to_rad()
         );
     }
     #[test]
     fn negative_angle_test() {
         assert_approx_eq!(
-            Angle::new(-180.0, Unit::DEG).rad(),
-            Angle::new(180.0, Unit::DEG).rad()
+            Angle::new(-180.0, Unit::DEG).to_rad(),
+            Angle::new(180.0, Unit::DEG).to_rad()
         );
     }
 
