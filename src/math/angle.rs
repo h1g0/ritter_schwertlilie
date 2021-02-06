@@ -6,7 +6,7 @@ pub enum Unit {
     DEG,
 }
 
-#[derive(Debug, Clone, Copy,PartialEq)]
+#[derive(Debug, Clone, Copy,PartialEq,PartialOrd)]
 pub struct Angle {
     rad: f64,
 }
@@ -90,15 +90,22 @@ impl Angle {
 
     #[inline]
     pub fn to_rad(&self)->f64{
-        return self.rad;
+        self.rad
     }
 
     #[inline]
     pub fn to_deg(&self)->f64{
-        return self.rad * Angle::RAD_TO_DEG;
+        self.rad * Angle::RAD_TO_DEG
     }
 
-
+    #[inline]
+    pub fn sin(&self)->f64{
+        self.rad.sin()
+    }
+    #[inline]
+    pub fn cos(&self)->f64{
+        self.rad.cos()
+    }
 }
 
 #[cfg(test)]
@@ -163,4 +170,33 @@ mod tests {
         );
     }
 
+
+    #[test]
+    fn add_test() {
+        assert_approx_eq!(
+            (Angle::new(315.0, Unit::DEG) + Angle::new(90.0,Unit::DEG)).to_rad(),
+            Angle::new(45.0, Unit::DEG).to_rad()
+        );
+    }
+    #[test]
+    fn sub_test() {
+        assert_approx_eq!(
+            (Angle::new(45.0, Unit::DEG) - Angle::new(90.0,Unit::DEG)).to_rad(),
+            Angle::new(315.0, Unit::DEG).to_rad()
+        );
+    }
+    #[test]
+    fn sub_test2() {
+        assert_approx_eq!(
+            (Angle::new(45.0, Unit::DEG) - Angle::new(315.0,Unit::DEG)).to_rad(),
+            Angle::new(90.0, Unit::DEG).to_rad()
+        );
+    }
+    #[test]
+    fn sub_test3() {
+        assert_approx_eq!(
+            (Angle::new(315.0, Unit::DEG) - Angle::new(45.0,Unit::DEG)).to_rad(),
+            Angle::new(270.0, Unit::DEG).to_rad()
+        );
+    }
 }
