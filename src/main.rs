@@ -7,6 +7,9 @@ mod math;
 mod input_state;
 use input_state::*;
 
+mod background;
+use background::*;
+
 mod player_ship;
 use player_ship::*;
 

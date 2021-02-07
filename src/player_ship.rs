@@ -66,39 +66,38 @@ impl PlayerShip {
     }
     fn get_dist_angle_by_input(input: &InputState) -> Option<Angle> {
         if input.down && input.right {
-            Some(Angle::new(45.0, Unit::DEG))
+            Some(deg(45.0))
         } else if input.down && input.left {
-            Some(Angle::new(135.0, Unit::DEG))
+            Some(deg(135.0))
         } else if input.up && input.left {
-            Some(Angle::new(225.0, Unit::DEG))
+            Some(deg(225.0))
         } else if input.up && input.right {
-            Some(Angle::new(315.0, Unit::DEG))
+            Some(deg(315.0))
         } else if input.up && input.down {
             None
         } else if input.left && input.right {
             None
         } else if input.right {
-            Some(Angle::new(0.0, Unit::DEG))
+            Some(deg(0.0))
         } else if input.down {
-            Some(Angle::new(90.0, Unit::DEG))
+            Some(deg(90.0))
         } else if input.left {
-            Some(Angle::new(180.0, Unit::DEG))
+            Some(deg(180.0))
         } else if input.up {
-            Some(Angle::new(270.0, Unit::DEG))
+            Some(deg(270.0))
         } else {
             None
         }
     }
     fn rotate(&mut self) {
-        let max = Angle::new(12.0, Unit::DEG);
-        if self.dist_angle - self.angle <= self.angle - self.dist_angle {
-            //目標が右側にある
+        let max = deg(12.0);
+        if self.dist_angle - self.angle <= self.angle - self.dist_angle { //目標が右側（含む真後ろ）にある
             if f64::abs(self.dist_angle.to_rad() - self.angle.to_rad()) <= max.to_rad() {
                 self.angle = self.dist_angle;
             } else {
                 self.angle += max;
             }
-        } else {
+        } else {// 目標が左側にある
             if f64::abs(self.dist_angle.to_rad() - self.angle.to_rad()) <= max.to_rad() {
                 self.angle = self.dist_angle;
             } else {

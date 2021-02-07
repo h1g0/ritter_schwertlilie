@@ -1,4 +1,4 @@
-use std::ops::{Neg,Add,AddAssign,Sub,SubAssign};
+use std::ops::{Add, AddAssign, Neg, Sub, SubAssign};
 
 #[derive(Debug, Clone, Copy, Eq, PartialEq)]
 pub enum Unit {
@@ -6,48 +6,48 @@ pub enum Unit {
     DEG,
 }
 
-#[derive(Debug, Clone, Copy,PartialEq,PartialOrd)]
+#[derive(Debug, Clone, Copy, PartialEq, PartialOrd)]
 pub struct Angle {
     rad: f64,
 }
-impl Neg for Angle{
+impl Neg for Angle {
     type Output = Self;
 
-    fn neg(self)-> Self{
-        Self{
-            rad: Angle::revise(-self.rad)
+    fn neg(self) -> Self {
+        Self {
+            rad: Angle::revise(-self.rad),
         }
     }
 }
-impl Add for Angle{
+impl Add for Angle {
     type Output = Self;
 
-    fn add(self, other: Self)-> Self{
-        Self{
-            rad: Angle::revise(self.rad + other.rad)
+    fn add(self, other: Self) -> Self {
+        Self {
+            rad: Angle::revise(self.rad + other.rad),
         }
     }
 }
-impl AddAssign for Angle{
-    fn add_assign(&mut self, other: Self){
-        *self = Self{
-            rad: Angle::revise(self.rad + other.rad)
+impl AddAssign for Angle {
+    fn add_assign(&mut self, other: Self) {
+        *self = Self {
+            rad: Angle::revise(self.rad + other.rad),
         }
     }
 }
-impl Sub for Angle{
+impl Sub for Angle {
     type Output = Self;
 
-    fn sub(self, other: Self)-> Self{
-        Self{
-            rad: Angle::revise(self.rad - other.rad)
+    fn sub(self, other: Self) -> Self {
+        Self {
+            rad: Angle::revise(self.rad - other.rad),
         }
     }
 }
-impl SubAssign for Angle{
-    fn sub_assign(&mut self, other: Self){
-        *self = Self{
-            rad: Angle::revise(self.rad - other.rad)
+impl SubAssign for Angle {
+    fn sub_assign(&mut self, other: Self) {
+        *self = Self {
+            rad: Angle::revise(self.rad - other.rad),
         }
     }
 }
@@ -71,15 +71,13 @@ impl Angle {
         }
         return r;
     }
-
-    pub fn new(angle: f64,unit:Unit)->Angle{
-        let mut result = Angle{
-            rad: 0.0,
-        };
-        result.set(angle,unit);
+    /// `Angle`を新規作成する
+    pub fn new(angle: f64, unit: Unit) -> Angle {
+        let mut result = Angle { rad: 0.0 };
+        result.set(angle, unit);
         return result;
     }
-
+    /// 角度を指定して代入する
     pub fn set(&mut self, angle: f64, unit: Unit) {
         self.rad = if unit == Unit::DEG {
             Angle::revise(angle * Angle::DEG_TO_RAD)
@@ -87,25 +85,33 @@ impl Angle {
             Angle::revise(angle)
         };
     }
-
+    /// ラジアンを求める
     #[inline]
-    pub fn to_rad(&self)->f64{
+    pub fn to_rad(&self) -> f64 {
         self.rad
     }
-
+    ///ディグリーを求める
     #[inline]
-    pub fn to_deg(&self)->f64{
+    pub fn to_deg(&self) -> f64 {
         self.rad * Angle::RAD_TO_DEG
     }
 
     #[inline]
-    pub fn sin(&self)->f64{
+    pub fn sin(&self) -> f64 {
         self.rad.sin()
     }
     #[inline]
-    pub fn cos(&self)->f64{
+    pub fn cos(&self) -> f64 {
         self.rad.cos()
     }
+}
+#[inline]
+pub fn rad(angle: f64) -> Angle {
+    Angle::new(angle, Unit::RAD)
+}
+#[inline]
+pub fn deg(angle: f64) -> Angle {
+    Angle::new(angle, Unit::DEG)
 }
 
 #[cfg(test)]
@@ -115,88 +121,51 @@ mod tests {
 
     #[test]
     fn get_deg_test() {
-        assert_approx_eq!(
-            Angle::new(180.0, Unit::DEG).to_deg(),
-            180.0
-        );
+        assert_approx_eq!(deg(180.0).to_deg(), 180.0);
     }
     #[test]
     fn get_deg_test2() {
-        assert_approx_eq!(
-            Angle::new(90.0, Unit::DEG).to_deg(),
-            90.0
-        );
+        assert_approx_eq!(deg(90.0).to_deg(), 90.0);
     }
     #[test]
     fn get_deg_test3() {
-        assert_approx_eq!(
-            Angle::new(360.0, Unit::DEG).to_deg(),
-            0.0
-        );
+        assert_approx_eq!(deg(360.0).to_deg(), 0.0);
     }
     #[test]
     fn get_rad_test() {
-        assert_approx_eq!(
-            Angle::new(180.0, Unit::DEG).to_rad(),
-            std::f64::consts::PI
-        );
+        assert_approx_eq!(deg(180.0).to_rad(), std::f64::consts::PI);
     }
     #[test]
     fn get_rad_test2() {
-        assert_approx_eq!(
-            Angle::new(90.0, Unit::DEG).to_rad(),
-            std::f64::consts::PI / 2.0
-        );
+        assert_approx_eq!(deg(90.0).to_rad(), std::f64::consts::PI / 2.0);
     }
     #[test]
     fn deg_and_rad_test() {
-        assert_approx_eq!(
-            Angle::new(180.0, Unit::DEG).to_rad(),
-            Angle::new(std::f64::consts::PI, Unit::RAD).to_rad()
-        );
+        assert_approx_eq!(deg(180.0).to_rad(), rad(std::f64::consts::PI).to_rad());
     }
     #[test]
     fn overflowed_angle_test() {
-        assert_approx_eq!(
-            Angle::new(180.0+360.0, Unit::DEG).to_rad(),
-            Angle::new(180.0, Unit::DEG).to_rad()
-        );
+        assert_approx_eq!(deg(180.0 + 360.0).to_rad(), deg(180.0).to_rad());
     }
     #[test]
     fn negative_angle_test() {
-        assert_approx_eq!(
-            Angle::new(-180.0, Unit::DEG).to_rad(),
-            Angle::new(180.0, Unit::DEG).to_rad()
-        );
+        assert_approx_eq!(deg(-180.0).to_rad(), deg(180.0).to_rad());
     }
-
 
     #[test]
     fn add_test() {
-        assert_approx_eq!(
-            (Angle::new(315.0, Unit::DEG) + Angle::new(90.0,Unit::DEG)).to_rad(),
-            Angle::new(45.0, Unit::DEG).to_rad()
-        );
+        assert_approx_eq!((deg(315.0) + deg(90.0)).to_rad(), deg(45.0).to_rad());
     }
     #[test]
     fn sub_test() {
-        assert_approx_eq!(
-            (Angle::new(45.0, Unit::DEG) - Angle::new(90.0,Unit::DEG)).to_rad(),
-            Angle::new(315.0, Unit::DEG).to_rad()
-        );
+        assert_approx_eq!((deg(45.0) - deg(90.0)).to_rad(), deg(315.0).to_rad());
     }
     #[test]
     fn sub_test2() {
-        assert_approx_eq!(
-            (Angle::new(45.0, Unit::DEG) - Angle::new(315.0,Unit::DEG)).to_rad(),
-            Angle::new(90.0, Unit::DEG).to_rad()
-        );
+        assert_approx_eq!((deg(45.0) - deg(315.0)).to_rad(), deg(90.0).to_rad());
     }
     #[test]
     fn sub_test3() {
-        assert_approx_eq!(
-            (Angle::new(315.0, Unit::DEG) - Angle::new(45.0,Unit::DEG)).to_rad(),
-            Angle::new(270.0, Unit::DEG).to_rad()
-        );
+        assert_approx_eq!((deg(315.0) - deg(45.0)).to_rad(), deg(270.0).to_rad());
     }
 }
