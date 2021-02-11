@@ -20,4 +20,8 @@ impl Background {
     pub fn set_center_point(&mut self, p: (u32,u32)){
         self.center_point = p;
     }
+
+    pub fn draw(){
+        unimplemented!();
+    }
 }
