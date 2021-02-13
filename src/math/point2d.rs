@@ -1,4 +1,4 @@
-type Point = u32;
+pub type Point = u32;
 
 pub struct Point2d {
     pub x: Point,

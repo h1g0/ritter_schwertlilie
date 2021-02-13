@@ -1,6 +1,7 @@
 extern crate rust_dxlib;
 use rust_dxlib::*;
 
+use crate::math::point2d::*;
 use crate::input_state::*;
 use crate::math::angle::*;
 
