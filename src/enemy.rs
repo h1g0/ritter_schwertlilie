@@ -5,7 +5,7 @@ use crate::input_state::*;
 use crate::math::angle::*;
 use crate::math::vec2d::*;
 
-pub struct Enemy{
+pub struct Enemy {
     /// 敵の画像
     pub texture: i32,
     /// 画像サイズ
@@ -20,26 +20,25 @@ pub struct Enemy{
     pub life: u32,
 }
 
-impl Enemy{
+impl Enemy {
     pub fn new(
         texture: i32,
         texture_size: Vec2d<u32>,
         hit_size: Vec2d<u32>,
         pos: Vec2d<u32>,
         vxy: Vec2d<f64>,
-        life: u32
-    )->Enemy{
-        return Enemy{
+        life: u32,
+    ) -> Enemy {
+        return Enemy {
             texture,
             texture_size,
             hit_size,
             pos,
             vxy,
             life,
-        }
+        };
     }
-    pub fn draw(){
+    pub fn draw() {
         unimplemented!();
     }
-
 }

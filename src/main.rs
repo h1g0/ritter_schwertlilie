@@ -28,12 +28,7 @@ fn main() {
         dx_SetUseCharCodeFormat(DX_CHARCODEFORMAT_UTF8);
         dx_SetMainWindowText(window_title.as_ptr());
         dx_ChangeWindowMode(TRUE);
-        dx_SetGraphMode(
-            window_size.x,
-            window_size.y,
-            color_bit,
-            refresh_rate,
-        );
+        dx_SetGraphMode(window_size.x, window_size.y, color_bit, refresh_rate);
         dx_DxLib_Init();
         dx_SetDrawScreen(DX_SCREEN_BACK);
 
@@ -42,7 +37,7 @@ fn main() {
             dx_LoadGraph("img/player.bmp"),
             Vec2d::new(32, 32),
             Vec2d::new(2, 2),
-            Vec2d::new(400.0,300.0),
+            Vec2d::new(400.0, 300.0),
             3,
         );
         let mut fps = FpsManager::new(true, 60, dx_GetNowCount());

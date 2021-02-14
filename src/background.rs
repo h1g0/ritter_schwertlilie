@@ -19,11 +19,11 @@ impl Background {
         }
     }
 
-    pub fn set_center_point(&mut self, p: Vec2d<i32>){
+    pub fn set_center_point(&mut self, p: Vec2d<i32>) {
         self.center_point = p;
     }
 
-    pub fn draw(){
+    pub fn draw() {
         unimplemented!();
     }
 }
