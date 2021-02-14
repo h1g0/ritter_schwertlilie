@@ -1,16 +1,16 @@
-
+use crate::math::vec2d::*;
 
 pub struct Background {
-    field_size: (u32, u32),
-    show_size: (u32, u32),
-    center_point: (u32, u32),
+    field_size: Vec2d<u32>,
+    show_size: Vec2d<u32>,
+    center_point: Vec2d<i32>,
 }
 
 impl Background {
     pub fn new(
-        field_size: (u32, u32),
-        show_size: (u32, u32),
-        center_point: (u32, u32),
+        field_size: Vec2d<u32>,
+        show_size: Vec2d<u32>,
+        center_point: Vec2d<i32>,
     ) -> Background {
         Background {
             field_size,
@@ -19,7 +19,7 @@ impl Background {
         }
     }
 
-    pub fn set_center_point(&mut self, p: (u32,u32)){
+    pub fn set_center_point(&mut self, p: Vec2d<i32>){
         self.center_point = p;
     }
 

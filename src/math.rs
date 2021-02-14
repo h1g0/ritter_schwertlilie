@@ -1,3 +1,3 @@
-pub mod point2d;
+pub mod vec2d;
 pub mod angle;
 pub mod rectangle;

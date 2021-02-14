@@ -1,26 +1,22 @@
-use crate::math::point2d::*;
-
-pub struct Rectangle{
-    start: Point2d,
-    end: Point2d,
+use crate::math::vec2d::*;
+pub struct Rectangle {
+    start: Vec2d<i32>,
+    end: Vec2d<i32>,
 }
 
-impl Rectangle{
-    pub fn new(start: Point2d, end: Point2d)->Rectangle{
-        Rectangle{start,end}
-    }
-
-    pub fn from_wh(width: Point,height:Point)->Rectangle{
-        Rectangle{
-            start:Point2d::new(0,0),
-            end:Point2d::new(width,height),
+impl Rectangle {
+    pub fn new(start: Vec2d<i32>, size: Vec2d<i32>) -> Rectangle {
+        Rectangle {
+            start,
+            end: start + size,
         }
     }
 
-    pub fn width(&self)->u32{
-        self.end.x - self.start.x
+    pub fn from_start_end(start: Vec2d<i32>, end: Vec2d<i32>) -> Rectangle {
+        Rectangle { start, end }
     }
-    pub fn height(&self)->u32{
-        self.end.y - self.start.y
+
+    pub fn size(&self) -> Vec2d<i32> {
+        self.end - self.start
     }
 }
