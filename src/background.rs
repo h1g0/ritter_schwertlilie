@@ -27,15 +27,20 @@ impl Background {
             Vec2d::<i32>::new(
                 // TODO: x,yがfield_sizeを超える時の処理
             if self.center_point.x > half_show_x{
-                if self.center_point.x + half_show_x > self.field_size.x{
-                    self.
+                if self.center_point.x + half_show_x > self.field_size.x as i32{
+                    self.field_size.x as i32 - self.show_size.x  as i32
+                }else{
+                    self.center_point.x - half_show_x
                 }
-                self.center_point.x - half_show_x
             }else{
                 0
             },
             if self.center_point.y > half_show_y{
-                self.center_point.y - half_show_y
+                if self.center_point.y + half_show_y > self.field_size.y as i32{
+                    self.field_size.y as i32 - self.show_size.y  as i32
+                }else{
+                    self.center_point.y - half_show_y
+                }
             }else{
                 0
             }),
