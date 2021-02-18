@@ -1,11 +1,12 @@
 use std::ops::{Add, AddAssign, Neg, Sub, SubAssign};
 
 #[derive(Debug, Clone, Copy, Eq, PartialEq)]
+/// 角度の単位（ラジアン `RAD` もしくは度 `DEG`）
 pub enum Unit {
     RAD,
     DEG,
 }
-
+/// 角度
 #[derive(Debug, Clone, Copy, PartialEq, PartialOrd)]
 pub struct Angle {
     rad: f64,

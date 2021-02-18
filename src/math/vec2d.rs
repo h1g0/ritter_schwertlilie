@@ -1,4 +1,5 @@
 use std::ops::{Add, Sub};
+/// 2次元ベクトル
 #[derive(Debug, Clone, Copy, Eq, PartialEq)]
 pub struct Vec2d<T> {
     pub x: T,
