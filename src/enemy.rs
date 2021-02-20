@@ -38,12 +38,17 @@ impl Enemy {
             life,
         };
     }
-
+    /// 位置を設定する
     pub fn move_by(&mut self,pos: &Vec2d<u32>){
         self.pos = pos;
     }
+    /// 移動ベクトルを設定する
+    pub fn set_vxy(&mut self, vxy = &Vec2d<f64>){
+        self.vxy = vxy;
+    }
+    /// 設定された移動ベクトルを元に移動する
     pub fn move_by_vxy(&mut self){
-        self.pos = self.pos + self.vxy;
+        self.pos +=  self.vxy;
     }
     pub fn draw() {
         unimplemented!();
