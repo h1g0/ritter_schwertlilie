@@ -38,6 +38,13 @@ impl Enemy {
             life,
         };
     }
+
+    pub fn move_by(&mut self,pos: &Vec2d<u32>){
+        self.pos = pos;
+    }
+    pub fn move_by_vxy(&mut self){
+        self.pos = self.pos + self.vxy;
+    }
     pub fn draw() {
         unimplemented!();
     }
