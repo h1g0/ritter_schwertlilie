@@ -5,6 +5,7 @@ use crate::input_state::*;
 use crate::math::angle::*;
 use crate::math::vec2d::*;
 
+/// 敵
 pub struct Enemy {
     /// 敵の画像
     pub texture: i32,
@@ -26,7 +27,7 @@ impl Enemy {
         texture_size: Vec2d<u32>,
         hit_size: Vec2d<u32>,
         pos: Vec2d<u32>,
-        vxy: Vec2d<f64>,
+        v: Vec2d<f64>,
         life: u32,
     ) -> Enemy {
         return Enemy {
@@ -43,12 +44,12 @@ impl Enemy {
         self.pos = pos;
     }
     /// 移動ベクトルを設定する
-    pub fn set_vxy(&mut self, vxy: &Vec2d<f64>) {
-        self.vxy = vxy;
+    pub fn set_vec(&mut self, vec: &Vec2d<f64>) {
+        self.v = vec;
     }
     /// 設定された移動ベクトルを元に移動する
-    pub fn move_by_vxy(&mut self) {
-        self.pos += self.vxy;
+    pub fn move_by_vec(&mut self) {
+        self.pos += self.v;
     }
     pub fn set_life(&mut self, life: u32) {
         self.life = life;
