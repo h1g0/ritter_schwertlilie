@@ -51,12 +51,15 @@ impl Enemy {
     pub fn move_by_vec(&mut self) {
         self.pos += self.v;
     }
+    /// HPを設定する
     pub fn set_life(&mut self, life: u32) {
         self.life = life;
     }
-    pub fn add_life(&mut self, life: u32) {
-        self.life += life;
+    /// 敵にダメージを与える
+    pub fn set_damage(&mut self, damage: u32) {
+        self.life += damage;
     }
+    /// 敵を描画する
     pub fn draw() {
         unimplemented!();
     }
