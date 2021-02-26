@@ -28,16 +28,16 @@ impl Enemy {
         texture: i32,
         texture_size: Vec2d<u32>,
         hit_size: Vec2d<u32>,
-        pos: Vec2d<u32>,
-        v: Vec2d<f64>,
+        angle: Angle,
+        speed: f64,
         life: u32,
     ) -> Enemy {
         return Enemy {
             texture,
             texture_size,
             hit_size,
-            pos,
-            vxy,
+            angle,
+            speed,
             life,
         };
     }
