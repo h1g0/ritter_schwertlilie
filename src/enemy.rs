@@ -48,7 +48,7 @@ impl Enemy {
 
     /// 設定された角度とスピードを元に移動する
     pub fn move_self(&mut self) {
-        let v = Vec2d::<f64>::new(self.angle.cos() * self.speed, self.angle.sin() * self.speed);
+        let v = Vec2d::<f64>::new(self.angle.vx(self.speed), self.angle.vy(self.speed));
         self.pos += v;
     }
     /// HPを設定する

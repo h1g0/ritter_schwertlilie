@@ -105,6 +105,15 @@ impl Angle {
     pub fn cos(&self) -> f64 {
         self.rad.cos()
     }
+
+    #[inline]
+    pub fn vx(&self, scalar: f64)->f64{
+        self.cos() * scalar
+    }
+    #[inline]
+    pub fn vy(&self, scalar: f64)->f64{
+        self.sin() * scalar
+    }
 }
 #[inline]
 pub fn rad(angle: f64) -> Angle {
