@@ -107,11 +107,11 @@ impl Angle {
     }
 
     #[inline]
-    pub fn vx(&self, scalar: f64)->f64{
+    pub fn vx(&self, scalar: f64) -> f64 {
         self.cos() * scalar
     }
     #[inline]
-    pub fn vy(&self, scalar: f64)->f64{
+    pub fn vy(&self, scalar: f64) -> f64 {
         self.sin() * scalar
     }
 }
