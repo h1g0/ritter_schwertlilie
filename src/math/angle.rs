@@ -114,6 +114,10 @@ impl Angle {
     pub fn vy(&self, scalar: f64) -> f64 {
         self.sin() * scalar
     }
+    #[inline]
+    pub fn vec(&self, scalar: f64) -> (f64, f64) {
+        (self.vx(scalar), self.vy(scalar))
+    }
 }
 #[inline]
 pub fn rad(angle: f64) -> Angle {
