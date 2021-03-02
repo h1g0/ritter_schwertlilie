@@ -38,4 +38,7 @@ impl<T> Vec2d<T> {
     pub fn new(x: T, y: T) -> Vec2d<T> {
         Vec2d { x, y }
     }
+    pub fn from_tuple(t:(T,T))->Vec2d<T>{
+        Vec2d::new(t.0,t.1)
+    }
 }
