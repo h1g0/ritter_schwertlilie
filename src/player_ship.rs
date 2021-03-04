@@ -87,7 +87,7 @@ impl PlayerShip {
         }
     }
     fn rotate(&mut self) {
-        let max = deg(12.0);
+        let max = deg(24.0);
         if self.dist_angle - self.angle <= self.angle - self.dist_angle {
             //目標が右側（含む真後ろ）にある
             if f64::abs(self.dist_angle.to_rad() - self.angle.to_rad()) <= max.to_rad() {
