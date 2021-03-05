@@ -104,6 +104,8 @@ impl PlayerShip {
             }
         }
     }
+
+    /// 入力状態から自機を動かす
     pub fn move_by_input(&mut self, input: &InputState) {
         let speed = if input.shift {
             PlayerShip::SPEED * 2.0
