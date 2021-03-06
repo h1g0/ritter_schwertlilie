@@ -113,12 +113,14 @@ impl PlayerShip {
             PlayerShip::SPEED
         };
         if let Some(dist) = PlayerShip::get_dist_angle_by_input(input) {
-            let vxy = Vec2d::new(dist.cos() * speed, dist.sin() * speed);
+            let vxy = Vec2d::from_tuple(dist.vec(speed));
             self.move_by(vxy);
             self.dist_angle = dist;
         }
         self.rotate();
     }
+
+    /// 描画
     pub fn draw(&self) {
         //描画位置とサイズをセット
         //指定した描画位置は画像の左上になるので、中央に配置する
