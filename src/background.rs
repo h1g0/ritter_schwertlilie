@@ -26,6 +26,10 @@ impl Background {
     pub fn get_view_rect(&mut self) -> Rectangle {
         let half_show_x: i32 = (self.view_size.x / 2) as i32;
         let half_show_y: i32 = (self.view_size.y / 2) as i32;
+
+        unimplemented!();
+        // TODO: ほろ酔いで実装したので下のは色々おかしい
+        /*
         Rectangle::new(
             Vec2d::<i32>::new(
                 if self.center_point.x <= half_show_x {
@@ -55,6 +59,7 @@ impl Background {
             ),
             Vec2d::<i32>::new(self.field_size.x as i32, self.field_size.y as i32),
         )
+        */
     }
     pub fn set_center_point(&mut self, p: Vec2d<i32>) {
         self.center_point = p;
