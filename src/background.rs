@@ -1,6 +1,7 @@
 use crate::math::rectangle::*;
 use crate::math::vec2d::*;
 
+/// 背景クラス
 pub struct Background {
     /// ゲーム上で使用されるフィールドの大きさ
     pub field_size: Vec2d<u32>,
